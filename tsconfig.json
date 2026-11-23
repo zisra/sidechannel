@@ -1,0 +1,6 @@
+// Worker code. The browser app and the tests have their own configs.
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": { "lib": ["ES2022"], "types": [] },
+  "include": ["src/*.ts", "src/shared/protocol.ts", "worker-configuration.d.ts"]
+}

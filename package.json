@@ -1,0 +1,26 @@
+{
+  "name": "sidechannel",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/client/app.ts --bundle --format=esm --target=es2022 --minify --sourcemap --outfile=public/app.js",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc -p . && tsc -p src/client && tsc -p test",
+    "test": "node --test test/*.test.ts"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.2.0",
+    "@types/markdown-it-emoji": "^3.0.1",
+    "@types/node": "^24.19.2",
+    "esbuild": "^0.28.2",
+    "geist": "^1.9.2",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.166.0"
+  },
+  "dependencies": {
+    "lucide": "^1.78.0",
+    "markdown-it": "^14.3.3",
+    "markdown-it-emoji": "^3.1.0"
+  }
+}
