@@ -3,3 +3,12 @@
   Referrer-Policy: no-referrer
   X-Content-Type-Options: nosniff
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: require-corp
+  Cross-Origin-Resource-Policy: same-origin
+  Cache-Control: no-store
+
+# Fonts hold nothing about anyone, so they can be cached.
+/fonts/*
+  ! Cache-Control
+  Cache-Control: public, max-age=604800

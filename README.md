@@ -34,10 +34,10 @@ key verification step, on purpose, to keep it simple.
 ## Develop
 
 ```sh
-npm install
-npm run dev        # http://localhost:8787
-npm test           # end-to-end tests against a local server
-npm run typecheck
+pnpm install
+pnpm dev           # http://localhost:8787
+pnpm test          # end-to-end tests against a local server
+pnpm typecheck
 ```
 
 - `src/worker.ts`, `src/room.ts`, `src/invite.ts`: the Cloudflare Worker and its Durable Objects
@@ -49,8 +49,8 @@ npm run typecheck
 Needs a free Cloudflare account.
 
 ```sh
-npx wrangler login
-npm run deploy
+pnpm exec wrangler login
+pnpm run deploy
 ```
 
 It goes live at `https://sidechannel.<your-subdomain>.workers.dev`.

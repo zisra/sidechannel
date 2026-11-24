@@ -1,6 +1,5 @@
 import { decrypt, encrypt, importRoomKey, unwrapRoomKey, wrapRoomKey } from "../shared/crypto.ts";
 import type { ClientMessage, Grant, MemberInfo, Payload, RoomState, Sealed, ServerMessage, StoredMessage } from "../shared/protocol.ts";
-import { IDLE_MINUTES } from "../shared/protocol.ts";
 import { copyText, h, icon, logo, mount, toast, type IconName } from "./dom.ts";
 import { saveCreds, type Creds } from "./creds.ts";
 import { renderMarkdown } from "./markdown.ts";
@@ -69,7 +68,6 @@ export function openChannel(creds: Creds, onGone: () => void): () => void {
 
   // Layout
 
-  const lockBadge = h("span", { class: "badge", hidden: true, title: "Channel locked" }, icon("lock"), h("span", { class: "badge-text" }, "locked"));
   const bellButton = h("button", { class: "icon-btn", type: "button" });
   const peopleButton = h("button", { class: "people-btn", type: "button", "aria-haspopup": "true", "aria-expanded": "false" });
   const peopleMenu = h("div", { class: "popover people-menu", hidden: true });
@@ -98,7 +96,7 @@ export function openChannel(creds: Creds, onGone: () => void): () => void {
     h(
       "header",
       { class: "bar" },
-      h("div", { class: "bar-left" }, h("span", { class: "wordmark" }, logo(), h("span", { class: "wordmark-text" }, "sidechannel")), lockBadge),
+      h("div", { class: "bar-left" }, h("span", { class: "wordmark" }, logo(), h("span", { class: "wordmark-text" }, "sidechannel"))),
       h("div", { class: "bar-right" }, bellButton, h("div", { class: "people" }, peopleButton, peopleMenu), clearButton, endButton),
     ),
     h("div", { class: "scroller" }, h("div", { class: "column" }, inviteSlot, log)),
@@ -885,7 +883,6 @@ export function openChannel(creds: Creds, onGone: () => void): () => void {
     if (disposed) return;
     renderPeople();
     renderInvite();
-    lockBadge.hidden = !state || state.invite !== null;
 
     let text = "";
     if (!online) text = "you're offline · messages will send when you're back";
@@ -930,7 +927,6 @@ export function openChannel(creds: Creds, onGone: () => void): () => void {
           h("span", { class: `presence ${m.online ? "on" : ""}` }, m.online ? "online" : "away"),
         ),
       ),
-      h("div", { class: "menu-foot" }, `deleted ${IDLE_MINUTES} min after everyone leaves`),
     );
   }
 

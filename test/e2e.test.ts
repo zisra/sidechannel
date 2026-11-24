@@ -10,7 +10,7 @@ const BASE = `http://127.0.0.1:${PORT}`;
 let server: ChildProcess;
 
 before(async () => {
-  server = spawn("npx", ["wrangler", "dev", "--port", String(PORT), "--ip", "127.0.0.1"], {
+  server = spawn("pnpm", ["exec", "wrangler", "dev", "--port", String(PORT), "--ip", "127.0.0.1"], {
     stdio: "ignore",
     detached: true,
   });
